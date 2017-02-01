@@ -15,8 +15,8 @@
 }
 
 .home-start {
-  font-size: 70px;
-  margin: 220px 0px 70px 0px;
+  font-size: 40px;
+  margin: 490px 0px 0px 0px;
 }
 
 .home-help {
@@ -34,36 +34,78 @@
 }
 
 .food-home {
+  background-color: black;
   float:left;
   display: block;
 }
 
 .each-food {
+  background-image: url('img/coding.png');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
   box-sizing: border-box;
   display: inline-flex;
-  width: 20px;
-  height: 20px;
-  margin: 40px -2px 0px 0px;
-  background-color: #fff;
+  width: 35px;
+  height: 35px;
+  margin: 25px -2px 20px 0px;
+  /*background-color: #fff;*/
   border-radius: 5px;
 }
-
 .img-home {
  float: right;
- width: 100px;
- height: 100px;
- margin: 0px 150px 0px 0px;
+ width: 150px;
+ height: 150px;
+ margin: -40px 150px 0px 0px;
 }
 
+.hexagon-bg-datacolumn{
+  width: 150px;
+  height: 150px;
+  margin: 10px 0px 0px 0px;
+  background-image: url('img/logo-ironhack.png');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.title-datacolumn{
+    font-size: 24px;
+    margin: 0px 0px 0px 0px;
+    color: #FFF;
+    padding: 48px 0px 0px 00px;
+}
+
+.subtitle-datacolumn {
+  font-size: 18px;
+  margin: 10px;
+  color: #FFF;
+  padding: 0px 0px 0px 3px;
+}
+
+.hexagon-bg{
+  width: 500px;
+  height: 500px;
+  margin: -10px 0px 0px 380px;
+  top: 0;
+  background-image: url('img/logo-ironhack.png');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  position: fixed;
+}
 .ghosts {
   float: left;
-  margin: 0px 0px 0px 70px;
+  margin: 0px 0px 0px 100px;
 }
 .img-home-ghosts {
  float: right;
  width: 90px;
  height: 90px;
  margin: 0px 0px 0px 0px;
+}
+.text.home{
+  z-index: 100;
 }
 
 .home-text:hover {
@@ -78,12 +120,47 @@
   padding: 0px;
 }
 
-.home-page h1 {
-  font-size: 90px;
-  margin: 40px;
-  color: #FFF508;
-  padding: 0px 100px 0px 100px;
+.title-homepage {
+  font-size: 70px;
+  margin: 0px 0px 0px 0px;
+  border: 0px;
+  color: #FFF;
+  padding: 145px 0px 0px 00px;
 }
+
+.subtitle-homepage {
+  font-size: 55px;
+  border: 0px;
+  margin: 10px;
+  color: #FFF;
+  padding: -30px 0px 0px 00px;
+}
+
+.hexagon-bg-player1resume{
+  width: 200px;
+  height: 200px;
+  border: 0px;
+  margin: 0px 0px 0px 145px;
+  background-image: url('img/logo-ironhack.png');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.title-player1resume{
+  font-size: 28px;
+  margin: 0px 0px 0px 0px;
+  color: #FFF;
+  padding: 70px 0px 0px 00px;
+}
+
+.subtitle-player1resume {
+  font-size: 24px;
+  margin: 0px;
+  color: #FFF;
+  padding: 10px 0px 0px 0px;
+}
+
 
 .container {
   width: 825px;
@@ -101,14 +178,14 @@
 .food {
   z-index: 0;
   border: 0px;
-  height: 7px;
-  width: 7px;
+  height: 12px;
+  width: 12px;
   margin: 9px 9px;
-  /*background-image: url('img/coding.png');
+  background-image: url('img/coding.png');
   background-size: cover;
-  background-repeat: no-repeat;*/
-  background-color: #fff;
-  border-radius: 10px;
+  background-repeat: no-repeat;
+  /*background-color: #fff;*/
+  /*border-radius: 10px;*/
 }
 
 .cell {
@@ -136,9 +213,10 @@
 }
 
 .logo-ironpacker {
-  height: 100px;
+  height: auto;
   margin: 0px 10px;
   border-bottom: 10px dotted #FFF;
+  padding: 0px 0px 0px 18px;
 }
 
 .menu:hover {
@@ -146,17 +224,16 @@
 }
 
 .data-column {
-  border: 10px dotted #fff;
   width: 200px;
   float: right;
   position: fixed;
   right: 0;
-  margin: 0px 30px;
+  margin: -15px 30px 0px 0px;
   font-family: 'Press Start 2P', cursive;
   color: #28AFFA;
   font-size: 23px;
   text-align: center;
-  padding: 30px 0px 0px 0px;
+  padding: 0px 0px 0px 0px;
 }
 
 .data-column h3 {
@@ -285,32 +362,32 @@
 }*/
 
 .cherry {
-  background-image: url('img/cherry.png');
+  background-image: url('img/html5.png');
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
-  height: 25px;
-  width: 25px;
+  height: 20px;
+  width: 20px;
 }
 
 .apple {
-  background-image: url('img/apple.png');
+  background-image: url('img/css3.png');
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
   z-index: 100;
-  height: 25px;
-  width: 25px;
+  height: 20px;
+  width: 20px;
 }
 
 .strawberry {
-  background-image: url('img/strawberry.png');
+  background-image: url('img/JS.png');
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
   z-index: 100;
-  height: 25px;
-  width: 25px;
+  height: 20px;
+  width: 20px;
 }
 
 .monster-yellow {
@@ -342,6 +419,11 @@
   margin: 0px;
 }
 
+.draw{
+  transform: rotate(350deg);
+  margin: 300px 0px 0px 0px;
+}
+
 .packer-logo{
   font-family: 'Press Start 2P', cursive;
   color: #FFF508;
@@ -363,10 +445,12 @@
 
 .about-page {
   visibility: hidden;
+  box-sizing: border-box;
   height: auto;
-  padding: 20px 20px;
-  margin: 25px 60px 15px 60px;
-  width: 1000px;
+  padding: 50px;
+  margin: 0px;
+  width: 100%;
+  height: 100%;
   background: #28AFFA;
   z-index: 1000;
   position: fixed;
@@ -374,7 +458,7 @@
   color: #fff;
   font-size: 13px;
   text-align: left;
-  border-radius: 40px;
+  border-radius: 0px;
   border: 10px dotted #00487C;
 }
 
@@ -497,40 +581,6 @@ body {
   font-weight: bold;
 }
 
-.hexagon-container {
-  margin: 20px 42%;
-}
-
-.hexagon {
-  position: relative;
-  width: 200px;
-  height: 115.47px;
-  background-color: #28AFFA;
-  margin: 57.74px 0;
-}
-
-.hexagon:before,
-.hexagon:after {
-  content: "";
-  position: absolute;
-  width: 0;
-  border-left: 100px solid transparent;
-  border-right: 100px solid transparent;
-  margin: 0px -100px;
-}
-
-.hexagon:before {
-  bottom: 100%;
-  border-bottom: 57.74px solid #28AFFA;
-}
-
-.hexagon:after {
-  top: 100%;
-  width: 0;
-  border-top: 57.74px solid #28AFFA;
-}
-
-
 #points-game-resume-player1, #points-game-resume-player2 {
   font-family: 'Press Start 2P', cursive;
   color: #28AFFA;
@@ -561,23 +611,33 @@ body {
   z-index: 100;
   font-family: 'Press Start 2P', cursive;
   color: white;
-  font-size: 40px;
+  font-size: 30px;
   line-height: 45px;
   text-align: center;
   margin: -1000px;
+}
+
+.resume-bg {
+  background-image: url('img/logo-bg.png');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  width: 457px;
+  margin: 10px auto;
+  height: 200px;
 }
 
 .show-resume {
   margin: 0px;
 }
 
-#player1-resume div {
+.player1-resume-div {
   border: 18px dotted #28AFFA;
   box-sizing: border-box;
-  margin: 8% 25%;
+  margin: 4% 25%;
   width: 50%;
   height: auto;
-  padding: 50px;
+  padding: 20px 50px 30px 50px;
 }
 
 #player1-resume button {
