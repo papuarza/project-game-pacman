@@ -11,6 +11,7 @@
   color: white;
   font-size: 35px;
   text-align: center;
+  /*margin: -1000px;*/
 }
 
 .home-start {
@@ -87,7 +88,7 @@
 .container {
   width: 825px;
   height: 500px;
-  margin: 30px 80px;
+  margin: 60px 80px;
 }
 
 .prizes img {
@@ -125,17 +126,19 @@
   z-index: 1;
 }
 
-.obstacle {
-  background-color: red;
-}
-
 .menu {
   margin: 30px 67px;
 }
 
 .menu h4{
-  color:white;
+  color:#28AFFA;
   font-size: 18px;
+}
+
+.logo-ironpacker {
+  height: 100px;
+  margin: 0px 10px;
+  border-bottom: 10px dotted #FFF;
 }
 
 .menu:hover {
@@ -143,42 +146,41 @@
 }
 
 .data-column {
-  border: 18px solid #28AFFA;
+  border: 10px dotted #fff;
   width: 200px;
   float: right;
   position: fixed;
   right: 0;
-  top: 0;
-  bottom: 0;
-  margin: 0px;
+  margin: 0px 30px;
   font-family: 'Press Start 2P', cursive;
   color: #28AFFA;
   font-size: 23px;
   text-align: center;
-  padding: 10px 0px 20px 0px;
+  padding: 30px 0px 0px 0px;
 }
 
 .data-column h3 {
-  margin: 10px 0px;
+  margin: 15px 0px;
 }
 
 .players-points {
-  border-bottom: 18px dotted #28AFFA;
+  /*border-bottom: 10px dotted #FFF;*/
 }
 
 .players-points h5 {
   font-size: 15px;
   line-height: 22px;
-  color: #fff;
+  color: #28AFFA;
   margin: 18px 10px;
 }
 
 .prizes {
-  border-bottom: 18px dotted #28AFFA;
+  border-bottom: 10px dotted #fff;
   box-sizing: border-box;
   height: auto;
   padding: 10px 0px;
-  color: #fff;
+  margin: 0px 10px;
+  color: #28AFFA;
 }
 
 .prizes h4 {
@@ -187,9 +189,9 @@
 
 #points {
     font-size: 40px;
-    margin: 0px;
+    margin: 0px 10px;
     padding: 10px 0px 20px 0px;
-    border-bottom: 18px dotted #28AFFA;
+    border-bottom: 10px dotted #fff;
 }
 
 
@@ -238,12 +240,55 @@
   background-color: black;
 }
 
+/*.cherry.food {
+  background-image: none;
+}
+
+.apple.food {
+  background-image: none;
+}
+
+.strawberry.food {
+  background-image: none;
+}*/
+
+/*.cherry::before {
+  content: "ghdh";
+  background-image: url('img/cherry.png');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  height: 25px;
+  width: 25px;
+}
+
+.apple::before {
+  content: "ghdh";
+  background-image: url('img/apple.png');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  z-index: 100;
+  height: 25px;
+  width: 25px;
+}
+
+.strawberry:before {
+  content: "ghdh";
+  background-image: url('img/strawberry.png');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  z-index: 100;
+  height: 25px;
+  width: 25px;
+}*/
+
 .cherry {
   background-image: url('img/cherry.png');
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
-  z-index: 100;
   height: 25px;
   width: 25px;
 }
@@ -279,6 +324,15 @@
 
 .monster-red {
   background-image: url('img/monster-red.gif');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  z-index: 2;
+  background-color: black;
+}
+
+.monster-scared {
+  background-image: url('img/ghost-scared.gif');
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -447,4 +501,37 @@ body {
   border: 0px;
   opacity: 1;
   cursor: pointer;
+}
+
+.obstacle {
+  background-color: #28AFFA;
+
+}
+
+.top-left{
+  background-color: #00487C;
+  border: 2px solid #00487C;
+  border-top-left-radius: 10px;
+}
+
+.top-right{
+  background-color: #00487C;
+  border: 2px solid #00487C;
+  border-top-right-radius: 10px;
+}
+
+.bottom-left{
+  background-color: #00487C;
+  border: 2px solid #00487C;
+  border-bottom-left-radius: 10px;
+}
+
+.bottom-right{
+  background-color: #00487C;
+  border: 2px solid #00487C;
+  border-bottom-right-radius: 10px;
+}
+
+.outside-border {
+  background-color:#00487C;
 }
