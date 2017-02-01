@@ -322,6 +322,97 @@
   background-color: black;
 }
 
+.logo-iron-packer {
+  background-image: url('img/logo-iron-packer.png');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  z-index: 2;
+  background-color: black;
+  height: 200px;
+  width: 200px;
+}
+
+.iron-logo {
+  font-family: 'Press Start 2P', cursive;
+  color: #fff;
+  font-size: 28px;
+  text-align: center;
+  padding: 85px 0px 0px 0px;
+  margin: 0px;
+}
+
+.packer-logo{
+  font-family: 'Press Start 2P', cursive;
+  color: #FFF508;
+  font-size: 28px;
+  margin: 0px;
+  padding: 5px 0px 0px 0px;
+  text-align: center;
+}
+
+.escape {
+  float: right;
+  display: inline-flex;
+  box-sizing: border-box;
+  color: #00487C;
+  margin: -38px 0px 0px 0px;
+  font-size: 35px;
+  cursor: pointer;
+}
+
+.about-page {
+  visibility: hidden;
+  height: auto;
+  padding: 20px 20px;
+  margin: 25px 60px 15px 60px;
+  width: 1000px;
+  background: #28AFFA;
+  z-index: 1000;
+  position: fixed;
+  font-family: 'Press Start 2P', cursive;
+  color: #fff;
+  font-size: 13px;
+  text-align: left;
+  border-radius: 40px;
+  border: 10px dotted #00487C;
+}
+
+.food-about{
+  background-color: #fff;
+  width: 20px;
+  height: 20px;
+  border-radius: 8px;
+  margin: 30px 3px 10px 0px;
+  display: inline-flex;
+}
+
+.about-page .title{
+  box-sizing: border-box;
+  color: #00487C;
+  margin: 10px 0px 0px 400px;
+  font-size: 35px;
+}
+.about-page h3{
+  box-sizing: border-box;
+  color: #00487C;
+  margin: 10px 0px 8px 300px;
+  font-size: 35px;
+}
+
+.about-page img{
+  margin: 20px 0px 0px 0px;
+   display: inline;
+   width: 40px;
+   height: 40px;
+}
+
+.about-page p {
+  display: inline;
+  margin: 0px 0px 0px 30px;
+  line-height: 20px;
+}
+
 .monster-red {
   background-image: url('img/monster-red.gif');
   background-size: cover;

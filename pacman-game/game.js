@@ -7,7 +7,9 @@ $(document).ready(function(){
      columns: 33
    };
 
-for (var rowIndex = 0; rowIndex < mapa.rows; rowIndex++){ ///// creación del mapa
+//////////////////SET THE GRID FOR THE GAME//////////////////////////////////////
+
+for (var rowIndex = 0; rowIndex < mapa.rows; rowIndex++){ // creación del mapa
     for (var columnIndex = 0; columnIndex < mapa.columns; columnIndex++){
       if(myMaze[rowIndex][columnIndex] === "TL") {
         $('.container').append($('<div>')
@@ -48,10 +50,50 @@ for (var rowIndex = 0; rowIndex < mapa.rows; rowIndex++){ ///// creación del ma
         }
   }
 }
+$('.board').append($('<div>').addClass('food')); //agrega food a todas las celdas
+window.timeoutIdCherry;
+window.timeoutIdApple;
+window.timeoutIdStrawberry;
+window.createFruits = function createFruits() { //función para agregar las fruta;
+  var selectorCherry = '[data-row=' + 1 + '][data-col=' + 26 + '] div'; ////draw cherry
+  var selectorApple = '[data-row=' + 1 + '][data-col=' + 1 + '] div'; ////draw cherry
+  var selectorStrawberry = '[data-row=' + 10 + '][data-col=' + 16 + '] div'; ////draw cherry
+  timeoutIdCherry = setTimeout(function () {
+    $(selectorCherry).addClass('cherry')
+    $(selectorCherry).removeClass('food')
+    deleteCherry(selectorCherry);
+  }, 2000);
+  timeoutIdApple = setTimeout(function () {
+  $(selectorApple).addClass('apple')
+  $(selectorApple).removeClass('food')
+  deleteApple(selectorApple);
+  }, 20000);
+  timeoutIdStrawberry = setTimeout(function () {
+  $(selectorStrawberry).addClass('strawberry')
+  $(selectorStrawberry).removeClass('food')
+  deleteStrawberry(selectorStrawberry);
+  }, 40000);
+  };
 
-  $('.board').append($('<div>').addClass('food'));
+///////////DRAW AND REMOVE PACMAN AND MOSNTERS/////////////////////////////////////
 
-
+window.drawPacman = function drawPacman() { //función para dibujar el pacman del nuevo movimiento
+  var selector = '[data-row=' + myPacman.position.row + '][data-col=' + myPacman.position.column + ']'; ////draw pacman
+  switch (myPacman.direction) {
+    case 0:
+      $(selector).addClass('pacman-up');
+      break;
+    case 1:
+      $(selector).addClass('pacman-right');
+      break;
+    case 2:
+      $(selector).addClass('pacman-down');
+      break;
+    case 3:
+      $(selector).addClass('pacman-left');
+      break;
+  }
+};
 window.eraseLastPacman = function eraseLastPacman() {  //función para borrar el pacman del movimiento anterior
     var selector = '[data-row=' + myPacman.position.row + '][data-col=' + myPacman.position.column + ']'; ////erase pacman
     var selectorImg = $("div").find('[data-row=' + myPacman.position.row + '][data-col=' + myPacman.position.column + ']')[0].innerHTML;
@@ -149,46 +191,6 @@ window.eraseLastPacman = function eraseLastPacman() {  //función para borrar el
       //   $(selector).removeClass('food');
 };
 
-window.drawPacman = function drawPacman() { //función para dibujar el pacman del nuevo movimiento
-  var selector = '[data-row=' + myPacman.position.row + '][data-col=' + myPacman.position.column + ']'; ////draw pacman
-  switch (myPacman.direction) {
-    case 0:
-      $(selector).addClass('pacman-up');
-      break;
-    case 1:
-      $(selector).addClass('pacman-right');
-      break;
-    case 2:
-      $(selector).addClass('pacman-down');
-      break;
-    case 3:
-      $(selector).addClass('pacman-left');
-      break;
-  }
-};
-
-window.createFruits = function addFruits() { //función para agregar una fruta;
-  var selectorCherry = '[data-row=' + 1 + '][data-col=' + 26 + '] div'; ////draw cherry
-  var selectorApple = '[data-row=' + 1 + '][data-col=' + 1 + '] div'; ////draw cherry
-  var selectorStrawberry = '[data-row=' + 10 + '][data-col=' + 16 + '] div'; ////draw cherry
-
-  var timeoutIdCherry = setTimeout(function () {
-  $(selectorCherry).addClass('cherry')
-  $(selectorCherry).removeClass('food')
-  deleteCherry(selectorCherry);
-}, 2000);
-var timeoutIdApple = setTimeout(function () {
-$(selectorApple).addClass('apple')
-$(selectorApple).removeClass('food')
-deleteApple(selectorApple);
-}, 20000);
-var timeoutIdStrawberry = setTimeout(function () {
-$(selectorStrawberry).addClass('strawberry')
-$(selectorStrawberry).removeClass('food')
-deleteStrawberry(selectorStrawberry);
-}, 40000);
-};
-
 window.deleteCherry = function deleteCherry(selectorCherry) {
   var timeoutIdDeleteCherry = setTimeout(function () {
   $(selectorCherry).removeClass('cherry');
@@ -204,7 +206,6 @@ window.deleteStrawberry = function deleteStrawberry(selectorStrawberry) {
   $(selectorStrawberry).removeClass('strawberry');
 }, 10000);
 }
-
 Monster.prototype.drawMonster = function(){ // función para borrar el mounstruo del movimiento anterior - ASIGNADO AL CONSTRUCTOR
   var selector = '[data-row=' + this.position.row + '][data-col=' + this.position.column + ']'; ////draw monsters
       switch (this.name) {
@@ -219,18 +220,6 @@ Monster.prototype.drawMonster = function(){ // función para borrar el mounstruo
         break;
       }
 };
-
-Monster.prototype.drawOpositeMonster = function(){ // función para borrar el mounstruo del movimiento anterior - ASIGNADO AL CONSTRUCTOR
-  var selector = '[data-row=' + this.position.row + '][data-col=' + this.position.column + ']'; ////draw monsters
-  $(selector).addClass('monster-scared');
-};
-
-Monster.prototype.eraseScaredMonster = function(){
-  var selector = '[data-row=' + this.position.row + '][data-col=' + this.position.column + ']'; ////draw monsters
-  $(selector).removeClass('monster-scared');
-  clearInterval()
-}
-
 Monster.prototype.eraseLastMonsterPosition = function(){ //función para dibujar el monstruo del movimiento nuevo - ASIGNADO AL CONSTRUCTOR
   var selector = '[data-row=' + this.position.row + '][data-col=' + this.position.column + ']'; ////draw monsters
   switch (this.name) {
@@ -246,9 +235,18 @@ Monster.prototype.eraseLastMonsterPosition = function(){ //función para dibujar
   }
   $(selector).removeClass('monster-scared');
 };
+Monster.prototype.drawOpositeMonster = function(){ // función para borrar el mounstruo del movimiento anterior - ASIGNADO AL CONSTRUCTOR
+  var selector = '[data-row=' + this.position.row + '][data-col=' + this.position.column + ']'; ////draw monsters
+  $(selector).addClass('monster-scared');
+};
+Monster.prototype.eraseScaredMonster = function(){
+  var selector = '[data-row=' + this.position.row + '][data-col=' + this.position.column + ']'; ////draw monsters
+  $(selector).removeClass('monster-scared');
+  clearInterval()
+}
 
 
-/////////////////////////////FIN DE MONTAJE HTML/////////////////////////////////////////
+/////////////////////////////SWITCH PACMAN DIRECTION WITH ARROWS/////////////////////
 
 $(document).keydown(function(e) {   //cambio de dirección del pacman con teclas
     switch(e.which) {
@@ -294,6 +292,7 @@ $(document).keydown(function(e) {   //cambio de dirección del pacman con teclas
     e.preventDefault(); // prevent the default action (scroll / move caret)
 });
 
+////////////////COMMANDS TO START THE GAME///////////////////////////////////////////
 $('#start').on("click", function(e){
   startTheGame();
 });
@@ -314,6 +313,8 @@ $('#play-again').on("click", function(e){
   startTheGame();
 });
 
+
+/////////////RESUME PAGE SHOWN WHEN THE GAME ENDS//////////////////////////////
 window.playerResume = function playerResume(){
   eraseLastPacman();
   removeTheFood();
@@ -342,7 +343,6 @@ window.playerResume = function playerResume(){
     return startTheGame();
   });
 }
-
 function checkWhoWin (ply1, ply2){
   if(ply1>ply2) {
     $('#resume-message').text("Player 2 you should practice, Player 1 just  ");
@@ -353,20 +353,27 @@ function checkWhoWin (ply1, ply2){
     $('#ass-kick').text("");
   }
 }
+$('#about-button-home').on("click",function(){
+  console.log('ksaghksa')
+  $('.about-page').css('visibility', 'visible');
+});
+$('.escape').on("click",function(){
+  $('.about-page').css('visibility', 'hidden');
+});
 
-});   //fin del jquery
+});
 
+
+////////////////////fin del jquery/////////////////////////////////////
+
+/////////////CHARACTERS CREATION//////////////////////////////////////
 var Monster = function(name, color, direction, position) { // constructor del mounstruo
   this.position = position;
   this.direction = direction;
   this.color = color;
   this.name = name;
 };
-
 var redMonster, blueMonster, yellowMonster, myPacman;
-
-
-
 function createCharacters() {
   redMonster = new Monster("red", "red", 1, {row: 3, column: 17});
   blueMonster = new Monster("blue", "blue", 2, {row: 3, column: 5});
@@ -378,32 +385,14 @@ function createCharacters() {
       column: 10}
   }
 }
+var playerPlaying = "player1";
+var playerResume;
+var pointsPlayer1 = 0;
+var pointsPlayer2 = 0;
+console.log("Linked");
 
-function removeTheFood() {
-  remainFood = document.getElementsByClassName('food');
-  remainFood2 = Array.prototype.slice.call(remainFood);
-  remainFood2.forEach(function(elem){
-    elem.remove()
-  })
-  remainCherry = document.getElementsByClassName('cherry');
-  remainCherry2 = Array.prototype.slice.call(remainCherry);
-  remainCherry2.forEach(function(elem){
-    elem.remove()
-  })
-  remainApple = document.getElementsByClassName('apple');
-  remainApple2 = Array.prototype.slice.call(remainApple);
-  remainApple2.forEach(function(elem){
-    elem.remove()
-  })
-  remainStrawberry = document.getElementsByClassName('strawberry');
-  remainStrawberry2 = Array.prototype.slice.call(remainStrawberry);
-  remainStrawberry2.forEach(function(elem){
-    elem.remove()
-  })
-}
-
+/////////////////START THE GAME/////////////////////////////////////
 function startTheGame(){
-  debugger;
   createCharacters();
   redMonster.drawMonster();  //dibujar por primera ver el monstruo rojo
   blueMonster.drawMonster(); //dibujar por primera vez el monstruo azul
@@ -418,17 +407,36 @@ function startTheGame(){
   createFruits();
 }
 
-var playerPlaying = "player1";
-var playerResume;
-var pointsPlayer1 = 0;
-var pointsPlayer2 = 0;
-console.log("Linked");
+//////////////////REMOVE ALL THE FOOD/////////////////////////
+function removeTheFood() {
+  remainFood = document.getElementsByClassName('food');
+  remainFood2 = Array.prototype.slice.call(remainFood);
+  remainFood2.forEach(function(elem){
+    elem.remove()
+  })
+  remainCherry = document.getElementsByClassName('cherry');
+  remainCherry2 = Array.prototype.slice.call(remainCherry);
+  clearTimeout(timeoutIdCherry);
+  remainCherry2.forEach(function(elem){
+    elem.remove()
+  })
+  remainApple = document.getElementsByClassName('apple');
+  remainApple2 = Array.prototype.slice.call(remainApple);
+  clearTimeout(timeoutIdApple);
+  remainApple2.forEach(function(elem){
+    elem.remove()
+  })
+  remainStrawberry = document.getElementsByClassName('strawberry');
+  remainStrawberry2 = Array.prototype.slice.call(remainStrawberry);
+  clearTimeout(timeoutIdStrawberry);
+  remainStrawberry2.forEach(function(elem){
+    elem.remove()
+  })
+}
 
+////////////////////MAP STRUCTURE////////////////////////////
 var T = true, F = false;
 var TL = "TL" ,TR = "TR",BL = "BL", BR = "BR", OB = "OB";
-
-
-
 var myMaze = [   //dibujo del mapa con T - F
   [TL, OB, OB, OB, OB, OB, OB, OB, OB, OB, OB, OB, OB, OB, OB, OB, OB, OB, OB, OB, OB, OB, OB, OB, OB, OB, OB, OB, OB, OB, OB, OB, TR], //0
   [OB, T, T, T, T, T, T, T, T, T, T, T, T, T, T, T, T, T, T, T, T, T, T, T, T, T, T, T, T, T, T, T, OB],
@@ -453,20 +461,10 @@ var myMaze = [   //dibujo del mapa con T - F
 ];
 
 
-//direction puede ser 0: Up, 1: Right, 2: Down, 3: Left
-
-
-// pacmanOnTheMaze(myPacman);
-
-//colocar el pacman
-// function pacmanOnTheMaze(object){
-//   myMaze[object.position.row][object.position.column] = "PACM";
-// }
-
+/////////////////PACMAN CONTROL FUNCTIONS//////////////////
 function deleteLastPosition(object){
   myMaze[object.position.row][object.position.column] = T;
 }
-
 function isPathForward(object){       //función que revisa si tenemos espacio delante para avanzar
   switch (myPacman.direction) {
     case 0:
@@ -500,7 +498,6 @@ function isPathForward(object){       //función que revisa si tenemos espacio d
 }
 return false;
 }
-
 function moveForward(object){   //función que mueve el Pacman para adelante en base a su dirección
   if (playerPlaying === "player1"){
     document.getElementById('points').innerHTML = pointsPlayer1;
@@ -522,13 +519,13 @@ function moveForward(object){   //función que mueve el Pacman para adelante en 
     break;
   }
 }
-
 function maper(mapa) {
   //console.log(mapa.join('\n') + '\n\n');
 }     //función que dibuja el mapa en consola
 maper(myMaze);
 var printTheMazeId;
 
+///////////////////INTERVALS FOR CHECK THE MAZE STATUS, PACMAN, AND MONSTERS/////////////////////
 function controlTheMaze() {
   printTheMazeId = setInterval(function(){    //intervalo que imprime el nuevo mapa en consola y revisa si los monstruos han comido a Pacman
     // pacmanOnTheMaze(myPacman);
@@ -553,10 +550,9 @@ function controlTheMaze() {
     if(foodRemain === 0) {
       playerResume();
     };
+
   }, 40);
 }
-
-
 var intervalId;
 function movePacman(){    //intervalo que realiza todos los movimientos de Pacman
   intervalId = setInterval(function() {
@@ -568,9 +564,8 @@ function movePacman(){    //intervalo que realiza todos los movimientos de Pacma
     } else {
       clearInterval(intervalId);
     }
-  }, 150);
+  }, 50);
 }
-
 var intervalIdMonster;
 function moveMonsters(){   //intervalo que realiza todos los movimientos de Monstruos
   intervalIdMonster = setInterval(function() {
@@ -628,7 +623,7 @@ function moveMonsters(){   //intervalo que realiza todos los movimientos de Mons
         blueMonster.drawMonster();
         blueMonster.followThePacman();
       } else {
-        blueMonster.switchMonsterDirectionTo0();
+        blueMonster.switchMonsterDirectionTo3();
         if (blueMonster.isPathForwardMonster()) {
           blueMonster.deleteMonsterLastPosition();
           blueMonster.moveMonsterForward();
@@ -642,14 +637,14 @@ function moveMonsters(){   //intervalo que realiza todos los movimientos de Mons
             blueMonster.drawMonster();
             blueMonster.followThePacman();
           } else {
-            blueMonster.switchMonsterDirectionTo2();
+            blueMonster.switchMonsterDirectionTo0();
             if (blueMonster.isPathForwardMonster()) {
               blueMonster.deleteMonsterLastPosition();
               blueMonster.moveMonsterForward();
               blueMonster.drawMonster();
               blueMonster.followThePacman();
             } else {
-              blueMonster.switchMonsterDirectionTo3();
+              blueMonster.switchMonsterDirectionTo2();
             }
           }
         }
@@ -669,36 +664,35 @@ function moveMonsters(){   //intervalo que realiza todos los movimientos de Mons
         yellowMonster.drawMonster();
         yellowMonster.followThePacman();
       } else {
-        yellowMonster.switchMonsterDirectionTo0();
+        yellowMonster.switchMonsterDirectionTo2();
         if (yellowMonster.isPathForwardMonster()) {
           yellowMonster.deleteMonsterLastPosition();
           yellowMonster.moveMonsterForward();
           yellowMonster.drawMonster();
           yellowMonster.followThePacman();
         } else {
-          yellowMonster.switchMonsterDirectionTo1();
+          yellowMonster.switchMonsterDirectionTo0();
           if (yellowMonster.isPathForwardMonster()) {
             yellowMonster.deleteMonsterLastPosition();
             yellowMonster.moveMonsterForward();
             yellowMonster.drawMonster();
             yellowMonster.followThePacman();
           } else {
-            yellowMonster.switchMonsterDirectionTo2();
+            yellowMonster.switchMonsterDirectionTo3();
             if (yellowMonster.isPathForwardMonster()) {
               yellowMonster.deleteMonsterLastPosition();
               yellowMonster.moveMonsterForward();
               yellowMonster.drawMonster();
               yellowMonster.followThePacman();
             } else {
-              yellowMonster.switchMonsterDirectionTo3();
+              yellowMonster.switchMonsterDirectionTo1();
             }
           }
         }
       }
     }
-  }, 200);
+  }, 70);
 }
-
 var intervalIdMonster;
 function makeMonstersRunFromPacman(){   //intervalo que realiza todos los movimientos de Monstruos
   var timeoutMonsterScared = setTimeout(function () {
@@ -706,27 +700,41 @@ function makeMonstersRunFromPacman(){   //intervalo que realiza todos los movimi
     clearInterval(intervalIdBlueMonsterRunning);
     clearInterval(intervalIdYellowMonsterRunning);
     clearInterval(intervalIdMonster);
-    clearInterval(printTheMazeId)
+    clearInterval(printTheMazeId);
     scared = false;
     moveMonsters();
     controlTheMaze();
-}, 10000);
-debugger;
-if (redMonster.checkIfPacmanEatMonster()){
-  redMonster.eraseScaredMonster();
-  clearInterval(intervalIdRedMonsterRunning);
-  return;
-}
-if (blueMonster.checkIfPacmanEatMonster()){
-  blueMonster.eraseScaredMonster();
-  clearInterval(intervalIdBlueMonsterRunning);
-  return;
-}
-if (yellowMonster.checkIfPacmanEatMonster()){
-  yellow.eraseScaredMonster();
-  clearInterval(intervalIdYellowMonsterRunning);
-  return;
-}
+}, 8000);
+intervalIdCheckPacmanEatingMonsters = setInterval(function(){
+  if (redMonster.checkIfPacmanEatMonster()){
+    if (playerPlaying === "player1"){
+      pointsPlayer1 +=27;
+    } else {
+      pointsPlayer2 +=27;
+    }
+    return;
+  }
+  if (blueMonster.checkIfPacmanEatMonster()){
+    if (playerPlaying === "player1"){
+      pointsPlayer1 +=27;
+    } else {
+      pointsPlayer2 +=27;
+    }
+    // alert("great done!")
+    // blueMonster.eraseScaredMonster();
+    return;
+  }
+  if (yellowMonster.checkIfPacmanEatMonster()){
+    if (playerPlaying === "player1"){
+      pointsPlayer1 +=27;
+    } else {
+      pointsPlayer2 +=27;
+    }
+    // alert("great done!")
+    // yellow.eraseScaredMonster();
+    return;
+  }
+},40)
 intervalIdRedMonsterRunning = setInterval(function() {
     redMonster.drawOpositeMonster();
     if (redMonster.isPathForwardMonster()) {
@@ -803,7 +811,6 @@ intervalIdBlueMonsterRunning = setInterval(function() {
       }
     }
 },250);
-
 intervalIdYellowMonsterRunning = setInterval(function() {
     yellowMonster.drawOpositeMonster();
     if (yellowMonster.isPathForwardMonster()) {
@@ -844,14 +851,11 @@ intervalIdYellowMonsterRunning = setInterval(function() {
   }, 250);
 }
 
-
-
-//////////////////MONSTERS/////////////////
+//////////////////MONSTERS CONTOLS/////////////////
 
 Monster.prototype.deleteMonsterLastPosition = function(object){
     myMaze[this.position.row][this.position.column] = T;
 };
-
 Monster.prototype.checkIfMonsterEatPacman = function() {
   if (this.position.row === myPacman.position.row && this.position.column === myPacman.position.column) {
     console.log("YOU LOSE!!!");
@@ -863,9 +867,9 @@ Monster.prototype.checkIfMonsterEatPacman = function() {
     return false;
   }
 };
-
 Monster.prototype.checkIfPacmanEatMonster = function() {
   if (this.position.row === myPacman.position.row && this.position.column === myPacman.position.column) {
+      debugger;
     console.log("Well done Pacman!!!");
     // clearInterval(intervalIdMonster);
     return true;
@@ -873,7 +877,6 @@ Monster.prototype.checkIfPacmanEatMonster = function() {
     return false;
   }
 };
-
 Monster.prototype.isPathForwardMonster = function(object){
   switch (this.direction) {
     case 0:
@@ -907,7 +910,6 @@ Monster.prototype.isPathForwardMonster = function(object){
 }
 return false;
 };
-
 Monster.prototype.followThePacman = function(){
   if(myPacman.position.row > this.position.row){
     this.direction = 2;
@@ -921,7 +923,6 @@ Monster.prototype.followThePacman = function(){
   clearInterval(intervalIdMonster);
   moveMonsters();
 };
-
 Monster.prototype.followThePacman2 = function(){
   if(myPacman.position.row < this.position.row){
     this.direction = 0;
@@ -935,7 +936,6 @@ Monster.prototype.followThePacman2 = function(){
   clearInterval(intervalIdMonster);
   moveMonsters();
 };
-
 Monster.prototype.followThePacman3 = function(){
   if(myPacman.position.row > this.position.row){
     this.direction = 2;
@@ -949,7 +949,6 @@ Monster.prototype.followThePacman3 = function(){
   clearInterval(intervalIdMonster);
   moveMonsters();
 };
-
 Monster.prototype.switchMonsterDirection = function(){
   if(myPacman.position.column > this.position.column){
     this.direction = 1;
@@ -1018,19 +1017,6 @@ Monster.prototype.switchMonsterDirectionTo3 = function(){
     moveMonsters();
   }
 };
-
-
-// Monster.prototype.checkIfMonsterEatPacman = function() {
-//   if (this.position.row === myPacman.position.row && this.position.column === myPacman.position.column) {
-//     console.log("YOU LOSE!!!");
-//     debugger
-//     clearInterval(printTheMazeId);
-//     clearInterval(intervalIdMonster);
-//     return;
-//   }
-// }
-
-
 Monster.prototype.moveMonsterForward = function(){
   switch (this.name) {
     case "red":
@@ -1060,7 +1046,6 @@ Monster.prototype.moveMonsterForward = function(){
     break;
   }
 }
-
 Monster.prototype.monsterOnTheMaze = function(){
   myMaze[this.position.row][this.position.column] = "MONS";
 }
