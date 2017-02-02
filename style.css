@@ -317,50 +317,6 @@
   background-color: black;
 }
 
-/*.cherry.food {
-  background-image: none;
-}
-
-.apple.food {
-  background-image: none;
-}
-
-.strawberry.food {
-  background-image: none;
-}*/
-
-/*.cherry::before {
-  content: "ghdh";
-  background-image: url('img/cherry.png');
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-  height: 25px;
-  width: 25px;
-}
-
-.apple::before {
-  content: "ghdh";
-  background-image: url('img/apple.png');
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-  z-index: 100;
-  height: 25px;
-  width: 25px;
-}
-
-.strawberry:before {
-  content: "ghdh";
-  background-image: url('img/strawberry.png');
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-  z-index: 100;
-  height: 25px;
-  width: 25px;
-}*/
-
 .cherry {
   background-image: url('img/html5.png');
   background-size: cover;

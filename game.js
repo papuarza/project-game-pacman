@@ -1,5 +1,4 @@
 scared = false;
-
 $(document).ready(function(){
   var audio = new Audio('pacman_beginning.wav');
   audio.play();
@@ -8,9 +7,7 @@ $(document).ready(function(){
      rows: 19,
      columns: 33
    };
-
 //////////////////SET THE GRID FOR THE GAME//////////////////////////////////////
-
 for (var rowIndex = 0; rowIndex < mapa.rows; rowIndex++){ // creación del mapa
     for (var columnIndex = 0; columnIndex < mapa.columns; columnIndex++){
       if(myMaze[rowIndex][columnIndex] === "TL") {
@@ -76,9 +73,7 @@ window.createFruits = function createFruits() { //función para agregar las frut
   deleteStrawberry(selectorStrawberry);
   }, 40000);
   };
-
 ///////////DRAW AND REMOVE PACMAN AND MOSNTERS/////////////////////////////////////
-
 window.drawPacman = function drawPacman() { //función para dibujar el pacman del nuevo movimiento
   var selector = '[data-row=' + myPacman.position.row + '][data-col=' + myPacman.position.column + ']'; ////draw pacman
   switch (myPacman.direction) {
@@ -175,9 +170,7 @@ window.eraseLastPacman = function eraseLastPacman() {  //función para borrar el
         makeMonstersRunFromPacman();
       }
     }
-
-
-    switch (myPacman.direction) {
+  switch (myPacman.direction) {
       case 0:
         $(selector).removeClass('pacman-up');
         $(selector).removeClass('pacman-down');
@@ -203,10 +196,7 @@ window.eraseLastPacman = function eraseLastPacman() {  //función para borrar el
       $(selector).removeClass('pacman-right');
         break;
     }
-      // var selector = '[data-row-food=' + myPacman.position.row + '][data-col-food=' + myPacman.position.column + ']'; ////draw pacman
-      //   $(selector).removeClass('food');
 };
-
 window.deleteCherry = function deleteCherry(selectorCherry) {
   timeoutIdDeleteCherry = setTimeout(function () {
   $(selectorCherry).removeClass('cherry');
@@ -260,8 +250,6 @@ Monster.prototype.eraseScaredMonster = function(){
   $(selector).removeClass('monster-scared');
   clearInterval()
 }
-
-
 /////////////////////////////SWITCH PACMAN DIRECTION WITH ARROWS/////////////////////
 
 $(document).keydown(function(e) {   //cambio de dirección del pacman con teclas
@@ -307,7 +295,6 @@ $(document).keydown(function(e) {   //cambio de dirección del pacman con teclas
     }
     e.preventDefault(); // prevent the default action (scroll / move caret)
 });
-
 ////////////////COMMANDS TO START THE GAME///////////////////////////////////////////
 $('#start').on("click", function(e){
   startTheGame();
@@ -328,8 +315,6 @@ $('#play-again').on("click", function(e){
   yellowMonster.eraseLastMonsterPosition();
   startTheGame();
 });
-
-
 /////////////RESUME PAGE SHOWN WHEN THE GAME ENDS//////////////////////////////
 window.playerResume = function playerResume(){
   eraseLastPacman();
@@ -382,10 +367,7 @@ $('.escape').on("click",function(){
 });
 
 });
-
-
 ////////////////////fin del jquery/////////////////////////////////////
-
 /////////////CHARACTERS CREATION//////////////////////////////////////
 var Monster = function(name, color, direction, position) { // constructor del mounstruo
   this.position = position;
@@ -410,7 +392,6 @@ var playerResume;
 var pointsPlayer1 = 0;
 var pointsPlayer2 = 0;
 console.log("Linked");
-
 /////////////////START THE GAME/////////////////////////////////////
 function startTheGame(){
   createCharacters();
@@ -426,7 +407,6 @@ function startTheGame(){
   moveMonsters();
   createFruits();
 }
-
 //////////////////REMOVE ALL THE FOOD/////////////////////////
 function removeTheFood() {
   remainFood = document.getElementsByClassName('food');
@@ -453,7 +433,6 @@ function removeTheFood() {
     elem.remove()
   })
 }
-
 ////////////////////MAP STRUCTURE////////////////////////////
 var T = true, F = false;
 var TL = "TL" ,TR = "TR",BL = "BL", BR = "BR", OB = "OB";
@@ -479,10 +458,7 @@ var myMaze = [   //dibujo del mapa con T - F
   [BL, OB, OB, OB, OB, OB, OB, OB, OB, OB, OB, OB, OB, OB, OB, OB, OB, OB, OB, OB, OB, OB, OB, OB, OB, OB, OB, OB, OB, OB, OB, OB, BR]
 
 ];
-var timeoutIdDeleteCherry;
-var timeoutIdDeleteApple;
-var timeoutIdDeleteStrawberry;
-
+var timeoutIdDeleteCherry, timeoutIdDeleteApple, timeoutIdDeleteStrawberry;
 /////////////////PACMAN CONTROL FUNCTIONS//////////////////
 function deleteLastPosition(object){
   myMaze[object.position.row][object.position.column] = T;
@@ -546,7 +522,6 @@ function maper(mapa) {
 }     //función que dibuja el mapa en consola
 maper(myMaze);
 var printTheMazeId;
-
 ///////////////////INTERVALS FOR CHECK THE MAZE STATUS, PACMAN, AND MONSTERS/////////////////////
 function controlTheMaze() {
   printTheMazeId = setInterval(function(){    //intervalo que imprime el nuevo mapa en consola y revisa si los monstruos han comido a Pacman
@@ -911,9 +886,7 @@ intervalIdYellowMonsterRunning = setInterval(function() {
   }
   }, 250);
 }
-
 //////////////////MONSTERS CONTOLS/////////////////
-
 Monster.prototype.deleteMonsterLastPosition = function(object){
     myMaze[this.position.row][this.position.column] = T;
 };
