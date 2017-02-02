@@ -321,6 +321,7 @@ window.playerResume = function playerResume(){
   clearInterval(printTheMazeId);
   clearInterval(intervalId);
   clearInterval(intervalIdMonster);
+  clearInterval(intervalIdCheckPacmanEatingMonsters);
   redMonster.eraseLastMonsterPosition();
   blueMonster.eraseLastMonsterPosition();
   yellowMonster.eraseLastMonsterPosition();
@@ -551,7 +552,7 @@ function controlTheMaze() {
       playerResume();
     };
 
-  }, 40);
+  }, 20);
 }
 var intervalId;
 function movePacman(){    //intervalo que realiza todos los movimientos de Pacman
@@ -564,7 +565,7 @@ function movePacman(){    //intervalo que realiza todos los movimientos de Pacma
     } else {
       clearInterval(intervalId);
     }
-  }, 50);
+  }, 40);
 }
 var intervalIdMonster;
 function moveMonsters(){   //intervalo que realiza todos los movimientos de Monstruos
@@ -691,9 +692,13 @@ function moveMonsters(){   //intervalo que realiza todos los movimientos de Mons
         }
       }
     }
-  }, 70);
+  }, 80);
 }
 var intervalIdMonster;
+var intervalIdCheckPacmanEatingMonsters;
+var pacmanEatsRedMonster = false;
+var pacmanEatsBlueMonster = false;
+var pacmanEatsYellowMonster = false;
 function makeMonstersRunFromPacman(){   //intervalo que realiza todos los movimientos de Monstruos
   var timeoutMonsterScared = setTimeout(function () {
     clearInterval(intervalIdRedMonsterRunning);
@@ -701,41 +706,55 @@ function makeMonstersRunFromPacman(){   //intervalo que realiza todos los movimi
     clearInterval(intervalIdYellowMonsterRunning);
     clearInterval(intervalIdMonster);
     clearInterval(printTheMazeId);
+    clearInterval(intervalIdCheckPacmanEatingMonsters);
     scared = false;
     moveMonsters();
     controlTheMaze();
+    pacmanEatsRedMonster = false;
+    pacmanEatsBlueMonster = false;
+    pacmanEatsYellowMonster = false;
+    clearTimeout(timeoutMonsterScared)
 }, 8000);
 intervalIdCheckPacmanEatingMonsters = setInterval(function(){
   if (redMonster.checkIfPacmanEatMonster()){
+    pacmanEatsRedMonster = true;
+    redMonster.eraseScaredMonster();
     if (playerPlaying === "player1"){
-      pointsPlayer1 +=27;
+      pointsPlayer1 +=0;
     } else {
-      pointsPlayer2 +=27;
+      pointsPlayer2 +=0;
     }
     return;
   }
   if (blueMonster.checkIfPacmanEatMonster()){
+    pacmanEatsBlueMonster = true;
+    blueMonster.eraseScaredMonster();
     if (playerPlaying === "player1"){
-      pointsPlayer1 +=27;
+      pointsPlayer1 +=0;
     } else {
-      pointsPlayer2 +=27;
+      pointsPlayer2 +=0;
     }
     // alert("great done!")
     // blueMonster.eraseScaredMonster();
     return;
   }
   if (yellowMonster.checkIfPacmanEatMonster()){
+    pacmanEatsYellowMonster = true;
+    yellowMonster.eraseScaredMonster();
     if (playerPlaying === "player1"){
-      pointsPlayer1 +=27;
+      pointsPlayer1 +=0;
     } else {
-      pointsPlayer2 +=27;
+      pointsPlayer2 +=0;
     }
     // alert("great done!")
     // yellow.eraseScaredMonster();
     return;
   }
-},40)
+},40);
 intervalIdRedMonsterRunning = setInterval(function() {
+  if(pacmanEatsRedMonster){
+
+  } else {
     redMonster.drawOpositeMonster();
     if (redMonster.isPathForwardMonster()) {
       redMonster.deleteMonsterLastPosition();
@@ -772,8 +791,12 @@ intervalIdRedMonsterRunning = setInterval(function() {
         }
       }
     }
+  }
 },250);
 intervalIdBlueMonsterRunning = setInterval(function() {
+  if(pacmanEatsBlueMonster){
+
+  } else {
     blueMonster.drawOpositeMonster();
     if (blueMonster.isPathForwardMonster()) {
       blueMonster.deleteMonsterLastPosition();
@@ -810,8 +833,12 @@ intervalIdBlueMonsterRunning = setInterval(function() {
         }
       }
     }
+  }
 },250);
 intervalIdYellowMonsterRunning = setInterval(function() {
+  if(pacmanEatsYellowMonster){
+
+  } else {
     yellowMonster.drawOpositeMonster();
     if (yellowMonster.isPathForwardMonster()) {
       yellowMonster.deleteMonsterLastPosition();
@@ -848,6 +875,7 @@ intervalIdYellowMonsterRunning = setInterval(function() {
         }
       }
     }
+  }
   }, 250);
 }
 
@@ -869,7 +897,6 @@ Monster.prototype.checkIfMonsterEatPacman = function() {
 };
 Monster.prototype.checkIfPacmanEatMonster = function() {
   if (this.position.row === myPacman.position.row && this.position.column === myPacman.position.column) {
-      debugger;
     console.log("Well done Pacman!!!");
     // clearInterval(intervalIdMonster);
     return true;
