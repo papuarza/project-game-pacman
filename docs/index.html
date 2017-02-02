@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>PACMAN</title>
+    <link rel="icon" href="img/pacman-icon.ico">
+    <link type="text/css" rel="stylesheet" href="style.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Tangerine">
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/lodash/4.17.4/lodash.js"></script>
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+    <script type="text/javascript" src="http://code.jquery.com/ui/1.9.2/jquery-ui.js"></script>
+    <script type="text/javascript" src="game.js"></script>
+
+  </head>
+  <body>
+    <div class="home-page">
+        <!-- <div class="logo-iron-packer">
+          <h2 class="iron-logo">IRON</h2>
+          <h2 class="packer-logo">PACKER</h2>
+        </div> -->
+          <div class="hexagon-bg"><h1 class="title-homepage">IRON</h1><h1 class="subtitle-homepage">PACMAN</h1></div>
+          <div class="draw">
+            <div class="ghosts">
+              <img src="img/monster-blue.png" alt="monster" class="img-home-ghosts">
+              <img src="img/monster-red.png" alt="monster" class="img-home-ghosts">
+              <img src="img/monster-yellow.png" alt="monster" class="img-home-ghosts">
+            </div>
+            <div class="food-home">
+              <div class="each-food"></div>
+              <div class="each-food"></div>
+              <div class="each-food"></div>
+              <div class="each-food"></div>
+              <div class="each-food"></div>
+              <div class="each-food"></div>
+              <div class="each-food"></div>
+              <div class="each-food"></div>
+              <div class="each-food"></div>
+            </div>
+            <img src="img/pacman-home.png" alt="pacman" class="img-home">
+          </div>
+
+      <h2 class="home-text home-start" id="start-the-game-home">START</h2>
+      <!-- <h2 class="home-text home-help">HELP</h2> -->
+      <h2 id="about-button-home" class="home-text home-about">ABOUT</h2>
+    </div>
+    <div class="about-page">
+      <h2 class="title">ABOUT</h2>
+      <h2 class="escape">X</h2>
+      </br><img src="img/pacman-animated.gif"/><p>This is you, the Pacman. Control the character with the arrows.</p>
+      </br><img src="img/monster-red.gif"/><img src="img/monster-blue.gif"/><img src="img/monster-yellow.gif"/><p>These are the Monsters, if the catch you, the game is over.</p>
+    </br><img src="img/coding.png"/><img src="img/coding.png"/><img src="img/coding.png"/><p>In IronPacman, the food is code. You get points every time you eat one!!</p>
+    </br><img src="img/html5.png"/><img src="img/css3.png"/><img src="img/JS.png"/><p>In our version there are no fruits, you get the power eating programming languages, every time you eat one of them you get extra points, they go out at 2s, 20s and 40s after the game starts.</p>
+  </br><img src="img/ghost-scared.gif"/><img src="img/ghost-scared.gif"/><img src="img/ghost-scared.gif"/><p>These are the Monsters in scare mode, means they can not hurt you. When you eat a language, the get into this mode for 10s. Every time you catch them in this state, you get extra points.</p>
+      </br></br><h3>GOOD LUCK!!</h3>
+    </div>
+    <div id="player1-resume">
+      <div class="player1-resume-div">
+        <div class="hexagon-bg-player1resume"><h1 class="title-player1resume">IRON</h1><h1 class="subtitle-player1resume">PACMAN</h1></div>
+        <h4>GREAT JOB PLAYER 1!</h4>
+        <h4 id="points-resume-player1">YOU GET: 000 points!</h4>
+        <button id="start-player2">START PLAYER 2</button>
+      </div>
+    </div>
+    <div id="game-resume">
+      <div class="resume-bg"></div>
+      <div>
+        <h4 id="points-game-resume-player1">Player 1: 000 points!</h4>
+        <h4 id="points-game-resume-player2">Player 2: 000 points!</h4>
+        <h4 id="resume-message">Player 2 you should practice, Player 1 just</h4><span id="ass-kick">kicked your ass!!</span>
+        <!-- <button id="play-again">PLAY AGAIN</button> -->
+      </div>
+    </div>
+    <div class="title">
+        <h1>PACMAN</h1>
+    </div>
+    <div class="data-column">
+      <div class="logo-ironpacker">
+        <div class="hexagon-bg-datacolumn"><h1 class="title-datacolumn">IRON</h1><h1 class="subtitle-datacolumn">PACMAN</h1></div>
+      </div>
+        <div class="data-subcolumn">
+      <h3>POINTS</h3>
+      <h4 id="points">0000</h4>
+      <div class="prizes">
+        <h4>PRIZES</h4>
+        <img src="img/html5.png" alt="cherry">
+        <img src="img/css3.png" alt="strawberry">
+        <img src="img/JS.png" alt="apple">
+        <!-- <img src="img/HTML5-2.png" alt="html"> -->
+        <!-- <img src="img/CSS3.png" alt="css">
+        <img src="img/JS.png" alt="js"> -->
+      </div>
+      <div class="players-points">
+        <h5 id="points-player1">Player 1: 000</h5>
+        <h5 id="points player2">Player 2: 000</h5>
+      </div>
+    </div>
+  </div>
+
+    <div class="container">
+
+    </div>
+  </body>
+</html>
