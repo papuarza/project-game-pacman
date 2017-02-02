@@ -1,6 +1,8 @@
 scared = false;
 
 $(document).ready(function(){
+  var audio = new Audio('pacman_beginning.wav');
+  audio.play();
   /////////////////////////CONNECT WITH HTML//////////////////////////
    var mapa = {   //declaración de rows y columnas del mapa
      rows: 19,
@@ -101,6 +103,8 @@ window.eraseLastPacman = function eraseLastPacman() {  //función para borrar el
     var selectorApple = $("div").find('[data-row=' + 1 + '][data-col=' + 1 + ']')[0].innerHTML;
     var selectorStrawberry = $("div").find('[data-row=' + 10 + '][data-col=' + 16 + ']')[0].innerHTML;
     if (selectorImg == '<div class="food"></div>'){
+      var audio = new Audio('pacman_chomp.mp3');
+      audio.play();
       if (playerPlaying === "player1"){
         pointsPlayer1 +=23;
       } else {
@@ -110,6 +114,8 @@ window.eraseLastPacman = function eraseLastPacman() {  //función para borrar el
     };
     if (selectorCherry == '<div class="cherry"></div>'){
       if (playerPlaying === "player1" && selectorImg === selectorCherry){
+        var audio = new Audio('pacman_eatfruit.wav');
+        audio.play();
         pointsPlayer1 +=103;
         $("div").find('[data-row=' + 1 + '][data-col=' + 26 + ']')[0].innerHTML = "";
         clearInterval(intervalIdMonster);
@@ -117,6 +123,8 @@ window.eraseLastPacman = function eraseLastPacman() {  //función para borrar el
         scared = true;
         makeMonstersRunFromPacman();
       } else if (playerPlaying === "player2" && selectorImg === selectorCherry) {
+        var audio = new Audio('pacman_eatfruit.wav');
+        audio.play();
         pointsPlayer2 +=103;
         $("div").find('[data-row=' + 1 + '][data-col=' + 26 + ']')[0].innerHTML = "";
         clearInterval(intervalIdMonster);
@@ -127,6 +135,8 @@ window.eraseLastPacman = function eraseLastPacman() {  //función para borrar el
     };
     if (selectorApple == '<div class="apple"></div>'){
       if (playerPlaying === "player1" && selectorImg === selectorApple){
+        var audio = new Audio('pacman_eatfruit.wav');
+        audio.play();
         pointsPlayer1 +=103;
         $("div").find('[data-row=' + 1 + '][data-col=' + 1 + ']')[0].innerHTML = "";
         clearInterval(intervalIdMonster);
@@ -134,6 +144,8 @@ window.eraseLastPacman = function eraseLastPacman() {  //función para borrar el
         scared = true;
         makeMonstersRunFromPacman();
       } else if (playerPlaying === "player2" && selectorImg === selectorApple) {
+        var audio = new Audio('pacman_eatfruit.wav');
+        audio.play();
         pointsPlayer2 +=103;
         $("div").find('[data-row=' + 1 + '][data-col=' + 1 + ']')[0].innerHTML = "";
         clearInterval(intervalIdMonster);
@@ -144,6 +156,8 @@ window.eraseLastPacman = function eraseLastPacman() {  //función para borrar el
     }
     if (selectorStrawberry == '<div class="strawberry"></div>'){
       if (playerPlaying === "player1" && selectorImg === selectorStrawberry){
+        var audio = new Audio('pacman_eatfruit.wav');
+        audio.play();
         pointsPlayer1 +=103;
         $("div").find('[data-row=' + 10 + '][data-col=' + 16 + ']')[0].innerHTML = "";
         clearInterval(intervalIdMonster);
@@ -151,6 +165,8 @@ window.eraseLastPacman = function eraseLastPacman() {  //función para borrar el
         scared = true;
         makeMonstersRunFromPacman();
       } else if (playerPlaying === "player2" && selectorImg === selectorStrawberry) {
+        var audio = new Audio('pacman_eatfruit.wav');
+        audio.play();
         pointsPlayer2 +=103;
         $("div").find('[data-row=' + 10 + '][data-col=' + 16 + ']')[0].innerHTML = "";
         clearInterval(intervalIdMonster);
@@ -192,17 +208,17 @@ window.eraseLastPacman = function eraseLastPacman() {  //función para borrar el
 };
 
 window.deleteCherry = function deleteCherry(selectorCherry) {
-  var timeoutIdDeleteCherry = setTimeout(function () {
+  timeoutIdDeleteCherry = setTimeout(function () {
   $(selectorCherry).removeClass('cherry');
 }, 10000);
 }
 window.deleteApple = function deleteApple(selectorApple) {
-  var timeoutIdDeleteApple = setTimeout(function () {
+  timeoutIdDeleteApple = setTimeout(function () {
   $(selectorApple).removeClass('apple');
 }, 10000);
 }
 window.deleteStrawberry = function deleteStrawberry(selectorStrawberry) {
-  var timeoutIdDeleteStrawberry = setTimeout(function () {
+  timeoutIdDeleteStrawberry = setTimeout(function () {
   $(selectorStrawberry).removeClass('strawberry');
 }, 10000);
 }
@@ -322,6 +338,9 @@ window.playerResume = function playerResume(){
   clearInterval(intervalId);
   clearInterval(intervalIdMonster);
   clearInterval(intervalIdCheckPacmanEatingMonsters);
+  clearTimeout(timeoutIdDeleteCherry);
+  clearTimeout(timeoutIdDeleteApple);
+  clearTimeout(timeoutIdDeleteStrawberry);
   redMonster.eraseLastMonsterPosition();
   blueMonster.eraseLastMonsterPosition();
   yellowMonster.eraseLastMonsterPosition();
@@ -460,7 +479,9 @@ var myMaze = [   //dibujo del mapa con T - F
   [BL, OB, OB, OB, OB, OB, OB, OB, OB, OB, OB, OB, OB, OB, OB, OB, OB, OB, OB, OB, OB, OB, OB, OB, OB, OB, OB, OB, OB, OB, OB, OB, BR]
 
 ];
-
+var timeoutIdDeleteCherry;
+var timeoutIdDeleteApple;
+var timeoutIdDeleteStrawberry;
 
 /////////////////PACMAN CONTROL FUNCTIONS//////////////////
 function deleteLastPosition(object){
@@ -533,16 +554,22 @@ function controlTheMaze() {
     // redMonster.monsterOnTheMaze();
     // maper(myMaze);
     if (redMonster.checkIfMonsterEatPacman()){
+      var audio = new Audio('pacman_death.wav');
+      audio.play();
       clearInterval(intervalIdMonster);
       playerResume();
       return;
     }
     if (blueMonster.checkIfMonsterEatPacman()){
+      var audio = new Audio('pacman_death.wav');
+      audio.play();
       clearInterval(intervalIdMonster);
       playerResume();
       return;
     }
     if (yellowMonster.checkIfMonsterEatPacman()){
+      var audio = new Audio('pacman_death.wav');
+      audio.play();
       clearInterval(intervalIdMonster);
       playerResume();
       return;
@@ -565,7 +592,7 @@ function movePacman(){    //intervalo que realiza todos los movimientos de Pacma
     } else {
       clearInterval(intervalId);
     }
-  }, 40);
+  }, 180);
 }
 var intervalIdMonster;
 function moveMonsters(){   //intervalo que realiza todos los movimientos de Monstruos
@@ -692,7 +719,7 @@ function moveMonsters(){   //intervalo que realiza todos los movimientos de Mons
         }
       }
     }
-  }, 80);
+  }, 200);
 }
 var intervalIdMonster;
 var intervalIdCheckPacmanEatingMonsters;
@@ -717,6 +744,8 @@ function makeMonstersRunFromPacman(){   //intervalo que realiza todos los movimi
 }, 8000);
 intervalIdCheckPacmanEatingMonsters = setInterval(function(){
   if (redMonster.checkIfPacmanEatMonster()){
+    // var audio = new Audio('pacman_eatghost.wav');
+    // audio.play();
     pacmanEatsRedMonster = true;
     redMonster.eraseScaredMonster();
     if (playerPlaying === "player1"){
@@ -727,6 +756,8 @@ intervalIdCheckPacmanEatingMonsters = setInterval(function(){
     return;
   }
   if (blueMonster.checkIfPacmanEatMonster()){
+    // var audio = new Audio('pacman_eatghost.wav');
+    // audio.play();
     pacmanEatsBlueMonster = true;
     blueMonster.eraseScaredMonster();
     if (playerPlaying === "player1"){
@@ -739,6 +770,8 @@ intervalIdCheckPacmanEatingMonsters = setInterval(function(){
     return;
   }
   if (yellowMonster.checkIfPacmanEatMonster()){
+    // var audio = new Audio('pacman_eatghost.wav');
+    // audio.play();
     pacmanEatsYellowMonster = true;
     yellowMonster.eraseScaredMonster();
     if (playerPlaying === "player1"){
