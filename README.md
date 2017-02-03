@@ -1,4 +1,4 @@
-IRON PACMAN GAME VERSION 1.0
+<strong>IRON PACMAN GAME VERSION 1.0<strong>
 
 The classic Pacman Game adapted to coders life. Instead of white balls as food, and fruits as bonus, you got line codes and programming languages.
 
