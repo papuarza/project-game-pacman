@@ -1,5 +1,9 @@
  @import url(https://fonts.googleapis.com/css?family=Press+Start+2P);
 
+ body{
+   width: 90%;
+ }
+
 .home-page {
   position: fixed;
   background-color: black;
@@ -278,11 +282,13 @@
   background-position: center;
   background-repeat: no-repeat;
   transform: rotate(270deg);
+  z-index: 10;
   /*background-color: #FBCC3E;*/
 }
 
 .pacman-down {
   background-image: url('img/pacman-animated.gif');
+    z-index: 10;
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -293,6 +299,7 @@
 .pacman-left {
   background-image: url('img/pacman-animated.gif');
   background-size: cover;
+    z-index: 10;
   background-position: center;
   background-repeat: no-repeat;
   transform: rotate(180deg);
@@ -301,6 +308,7 @@
 
 .pacman-right {
   background-image: url('img/pacman-animated.gif');
+    z-index: 10;
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
