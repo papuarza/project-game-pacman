@@ -42,7 +42,7 @@ function movePacman(){    //intervalo que realiza todos los movimientos de Pacma
     } else {
       // clearInterval(intervalId);
     }
-  }, 120);
+  }, 60);
 }
 var intervalIdMonster;
 function moveMonsters(){   //intervalo que realiza todos los movimientos de Monstruos
@@ -169,7 +169,7 @@ function moveMonsters(){   //intervalo que realiza todos los movimientos de Mons
         }
       }
     }
-  }, 200);
+  }, 100);
 }
 var intervalIdMonster;
 var intervalIdCheckPacmanEatingMonsters;
